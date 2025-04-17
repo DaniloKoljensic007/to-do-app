@@ -1,0 +1,14 @@
+body {
+    background-color: azure;
+}
+
+
+.task-complete {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.task-not-completed {
+    cursor: pointer;
+    margin-right: 10px;
+}

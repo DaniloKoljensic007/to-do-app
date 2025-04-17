@@ -27,10 +27,28 @@
   </div>
   <hr />
   <div class="row mt-4">
-    <ul>
-      <h2>Newer tasks</h2>
+    <h2>Newer tasks</h2>
+    <ul class="list-group">
       {% for task in tasks %}
-      <li>{{task.title}}</li>
+      <li
+        class="list-group-item {% if task.is_completed %} task-complete {% else %} task-not-complete {% endif %}"
+      >
+        {{task.title}}
+        <div>
+          <form action="{% url 'update' task.id %}" method="post">
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="btn btn-primary m-2"
+              name="isCompleted"
+            >
+              {% if not task.is_completed %} Mark as Done {% else %}
+              Undone{%endif%}
+            </button>
+          </form>
+          <button type="submit" class="btn btn-danger m-2">Delete</button>
+        </div>
+      </li>
       {% endfor %}
     </ul>
   </div>
